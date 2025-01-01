@@ -1,0 +1,19 @@
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model QueryLog {
+  id         Int      @id @default(autoincrement())
+  query      String
+  analysis   String?
+  suggestions String?
+  createdAt  DateTime @default(now())
+}
